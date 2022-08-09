@@ -1,0 +1,239 @@
+What are the different Storage Tiers in Azure?
+Microsoft Azure offers 3 storage tiers for blob storage. These include
+Hot storage tier – This is the tier that is optimized for data that is accessed very frequently. When a storage is marked as Hot, it means that we would want these files to be immediately be accessible. The storage cost for the Hot tier is usually higher but the access cost is much lower when compared to other tiers.
+Cool storage tier – This is the tier that is optimized for data that is infrequently accessed. This is the data that is at least stored for 30 days. A simple example of the cool storage is a file that is accessed once in a month. You don’t want to pay a higher cost by putting the file in the Hot tier. Instead, cool storage is a good fit for these kinds of files. The cool storage tier has lower storage cost but slightly higher access cost.
+Archive storage tier – This is the tier that is optimized for data which is rarely accessed. This includes the data that is stored for at least 180 days. As the name suggests, this is used for archive data. You can store the files that you hardly access in the Archive storage. One of the simple examples that fits in to the archive storage is the backup files. The archive storage tier has lowest storage cost, but the access cost is slightly higher than the other tiers.
+Also, note that it is important that you save the files to azure storage tiers and keep it at least for 30 days as you would usually be charged for 30 days.
+Online access tiers
+When your data is stored in an online access tier (either Hot or Cool), users can access it immediately. The Hot tier is the best choice for data that is in active use, while the Cool tier is ideal for data that is accessed less frequently, but that still must be available for reading and writing.
+Example usage scenarios for the Hot tier include:
+•	Data that's in active use or is expected to be read from and written to frequently.
+•	Data that's staged for processing and eventual migration to the Cool access tier.
+Usage scenarios for the Cool access tier include:
+•	Short-term data backup and disaster recovery.
+•	Older data sets that aren't used frequently but are expected to be available for immediate access.
+•	Large data sets that need to be stored in a cost-effective way while additional data is being gathered for processing.
+
+A blob in the Cool tier in a general-purpose v2 account is subject to an early deletion penalty if it's deleted or moved to a different tier before 30 days has elapsed. This charge is prorated. For example, if a blob is moved to the Cool tier and then deleted after 21 days, you'll be charged an early deletion fee equivalent to 9 (30 minus 21) days of storing that blob in the Cool tier.
+Archive access tier
+The Archive tier is an offline tier for storing data that is rarely accessed. The Archive access tier has the lowest storage cost, but higher data retrieval costs and latency compared to the Hot and Cool tiers.  Example usage scenarios for the Archive access tier include:
+•	Long-term backup, secondary backup, and archival datasets
+•	Original (raw) data that must be preserved, even after it has been processed into final usable form
+•	Compliance and archival data that needs to be stored for a long time and is hardly ever accessed
+Data must remain in the Archive tier for at least 180 days or be subject to an early deletion charge. For example, if a blob is moved to the Archive tier and then deleted or moved to the Hot tier after 45 days, you'll be charged an early deletion fee equivalent to 135 (180 minus 45) days of storing that blob in the Archive tier.
+1.	To read or download a blob in the Archive tier, you must first rehydrate it to an online tier, either Hot or Cool. 
+2.	Data in the Archive tier can take up to 15 hours to rehydrate, depending on the priority you specify for the rehydration operation.
+3.	Only storage accounts that are configured for LRS, GRS, or RA-GRS support moving blobs to the Archive tier. 
+4.	The Archive tier isn't supported for ZRS, GZRS, or RA-GZRS accounts.
+
+•	To change the redundancy configuration for a storage account that contains blobs in the Archive tier, you must first rehydrate all archived blobs to the Hot or Cool tier. Microsoft recommends that you avoid changing the redundancy configuration for a storage account that contains archived blobs, if at all possible, because rehydration operations can be costly and time-consuming.
+•	Migrating a storage account from LRS to GRS is supported as long as no blobs were moved to the Archive tier while the account was configured for LRS. 
+•	An account can be moved back to GRS if the update is performed less than 30 days from the time the account became LRS, and no blobs were moved to the Archive tier while the account was set to LRS.
+•	The default access tier for a new general-purpose v2 storage account is set to the Hot tier by default
+1.	If you toggle the default access tier setting from Hot to Cool in a general-purpose v2 account, then you're charged for write operations (per 10,000) for all blobs for which the access tier is inferred.
+2.	You're charged for both read operations (per 10,000) and data retrieval (per GB) if you toggle from Cool to Hot in a general-purpose v2 account.
+3.	There's no charge for changing the default account access tier setting from Hot to Cool in a legacy Blob Storage account. 
+4.	You're charged for both read operations (per 10,000) and data retrieval (per GB) if you toggle from Cool to Hot in a Blob Storage account. 
+5.	Microsoft recommends using general-purpose v2 storage accounts rather than Blob Storage accounts when possible.
+Summary of access tier options
+The following table summarizes the features of the Hot, Cool, and Archive access tiers.
+	Hot tier	Cool tier	Archive tier
+Availability	99.9%	99%	Offline
+Availability
+(RA-GRS reads)	99.99%	99.9%	Offline
+Usage charges	Higher storage costs, but lower access and transaction costs	Lower storage costs, but higher access and transaction costs	Lowest storage costs, but highest access, and transaction costs
+Minimum recommended data retention period	N/A	30 days1	180 days
+Latency
+(Time to first byte)	Milliseconds	Milliseconds	Hours2
+Supported redundancy configurations	All	All	LRS, GRS, and RA-GRS3 only
+
+•	Objects in the Cool tier on general-purpose v2 accounts have a minimum retention duration of 30 days. For Blob Storage accounts, there's no minimum retention duration for the Cool tier.
+•	When rehydrating a blob from the Archive tier, you can choose either a standard or high rehydration priority option. Each offers different retrieval latencies and costs.
+•	All storage accounts use a pricing model for block blob storage that is based on a blob's tier.
+•	In addition to the amount of data stored, the cost of storing data varies depending on the access tier. The per-gigabyte capacity cost decreases as the tier gets cooler
+•	Data access charges increase as the tier gets cooler. For data in the Cool and Archive access tier, you're charged a per-gigabyte data access charge for reads.
+•	A per-transaction charge applies to all tiers and increases as the tier gets cooler.
+•	This charge only applies to accounts with geo-replication configured, including GRS and RA-GRS. Geo-replication data transfer incurs a per-gigabyte charge.
+•	Outbound data transfers (data that is transferred out of an Azure region) incur billing for bandwidth usage on a per-gigabyte basis.
+•	Data Lake Storage Gen2, Network File System (NFS) 3.0 protocol, and SSH File Transfer Protocol (SFTP) support all require a storage account with a hierarchical namespace enabled.
+
+Changing a blob's access tier
+Keep in mind the following billing impacts when changing a blob's tier:
+•	When a blob is uploaded or moved between tiers, it's charged at the corresponding rate immediately upon upload or tier change.
+•	When a blob is moved to a cooler tier (Hot to Cool, Hot to Archive, or Cool to Archive), the operation is billed as a write operation to the destination tier, where the write operation (per 10,000) and data write (per GB) charges of the destination tier apply.
+•	When a blob is moved to a warmer tier (Archive to Cool, Archive to Hot, or Cool to Hot), the operation is billed as a read from the source tier, where the read operation (per 10,000) and data retrieval (per GB) charges of the source tier apply. Early deletion charges for any blob moved out of the Cool or Archive tier may apply as well.
+•	While a blob is being rehydrated from the Archive tier, that blob's data is billed as archived data until the data is restored and the blob's tier changes to Hot or Cool.
+
+
+
+
+
+
+
+
+Describe redundancy options
+Redundancy ensures that your storage account meets its availability and durability targets even in the face of failures.
+The factors that help determine which redundancy option you should choose include:
+•	How your data is replicated in the primary region.
+•	Whether your data is replicated to a second region that is geographically distant to the primary region, to protect against regional disasters (geo-replication).
+•	Whether your application requires read access to the replicated data in the secondary region if the primary region becomes unavailable for any reason (geo-replication with read access).
+
+The redundancy setting for a storage account is shared for all storage services exposed by that account. All storage resources deployed in the same storage account have the same redundancy setting. You may want to isolate different types of resources in separate storage accounts if they have different redundancy requirements.
+
+Redundancy in the primary region
+Data in an Azure Storage account is always replicated three times in the primary region. Azure Storage offers two options for how your data is replicated in the primary region:
+•	Locally redundant storage (LRS) copies your data synchronously three times within a single physical location in the primary region. LRS is the least expensive replication option, but isn't recommended for applications requiring high availability or durability.
+•	Zone-redundant storage (ZRS) copies your data synchronously across three Azure availability zones in the primary region. For applications requiring high availability, Microsoft recommends using ZRS in the primary region, and also replicating to a secondary region.
+Microsoft recommends using ZRS in the primary region for Azure Data Lake Storage Gen2 workloads.
+
+Locally redundant storage
+1.	Locally redundant storage (LRS) replicates your storage account three times within a single data center in the primary region. 
+2.	LRS provides at least 99.999999999% (11 nines) durability of objects over a given year.
+3.	LRS is the lowest-cost redundancy option and offers the least durability compared to other options. 
+4.	LRS protects your data against server rack and drive failures. However, if a disaster such as fire or flooding occurs within the data center, all replicas of a storage account using LRS may be lost or unrecoverable. To mitigate this risk, Microsoft recommends using zone-redundant storage (ZRS), geo-redundant storage (GRS), or geo-zone-redundant storage (GZRS).
+LRS is a good choice for the following scenarios:
+•	If your application stores data that can be easily reconstructed if data loss occurs, you may opt for LRS.
+•	If your application is restricted to replicating data only within a country or region due to data governance requirements, you may opt for LRS. In some cases, the paired regions across which the data is geo-replicated may be in another country or region. For more information on paired regions, see Azure regions.
+•	If your scenario is using Azure unmanaged disks, you may opt for LRS. While it's possible to create a storage account for Azure unmanaged disks that uses GRS, it isn't recommended due to potential issues with consistency over asynchronous geo-replication.
+
+Zone-redundant storage
+1.	Zone-redundant storage (ZRS) replicates your storage account synchronously across three Azure availability zones in the primary region. 
+2.	Each availability zone is a separate physical location with independent power, cooling, and networking.
+3.	 ZRS offers durability for storage resources of at least 99.9999999999% (12 9's) over a given year.
+4.	ZRS provides excellent performance, low latency, and resiliency for your data if it becomes temporarily unavailable.
+5.	ZRS is supported for all Azure Storage services through standard general-purpose v2 storage accounts including: Azure Blob storage, Queue, File, Table
+6.	ZRS is supported for premium block blobs accounts
+7.	However, ZRS by itself may not protect your data against a regional disaster where multiple zones are permanently affected. For protection against regional disasters, Microsoft recommends using geo-zone-redundant storage (GZRS), which uses ZRS in the primary region and also geo-replicates your data to a secondary region.
+ZRS is a good choice for the following scenarios:
+1.	Microsoft recommends using ZRS in the primary region for scenarios that require high availability. 
+2.	ZRS is also recommended for restricting replication of data to a particular country or region to meet data governance requirements.
+3.	Microsoft recommends using ZRS for Azure Files workloads. If a zone becomes unavailable, no remounting of Azure file shares from the connected clients is required
+
+Azure Storage offers two options for copying your data to a secondary region:
+Geo-redundant storage (GRS) 
+1.	copies your data synchronously three times within a single physical location in the primary region using LRS. It then copies your data asynchronously to a single physical location in a secondary region that is hundreds of miles away from the primary region. 
+2.	Within the secondary region, your data is copied synchronously three times using LRS.
+3.	GRS offers durability for storage resources of at least 99.99999999999999% (16 9's) over a given year.
+Geo-zone-redundant storage (GZRS)
+1.	copies your data synchronously across three Azure availability zones in the primary region using ZRS. It then copies your data asynchronously to a single physical location in the secondary region. 
+2.	Within the secondary region, your data is copied synchronously three times using LRS.
+3.	combines the high availability provided by redundancy across availability zones with protection from regional outages provided by geo-replication. 
+4.	Microsoft recommends using GZRS for applications requiring maximum consistency, durability, and availability, excellent performance, and resilience for disaster recovery.
+5.	 GZRS is designed to provide at least 99.99999999999999% (16 9's) durability of objects over a given year.
+
+Note: Geo-redundant storage (with GRS or GZRS) replicates your data to another physical location in the secondary region to protect against regional outages. With an account configured for GRS or GZRS, data in the secondary region is not directly accessible to users or applications, unless a failover occurs.
+
+Identify options for moving files, including AzCopy, Azure Storage Explorer, and Azure File Sync
+AzCopy
+1.	AzCopy is a command-line tool that moves data into and out of Azure Storage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Azure Storage Explorer
+1.	Microsoft Azure Storage Explorer is a standalone app that makes it easy to work with Azure Storage data on Windows, macOS, and Linux.
+2.	Storage Explorer can connect to the following resource types using a SAS URI: Blob container,Azure Data Lake Storage Gen2 container or directory,File share,Queue,Table
+3.	Local storage emulator: Storage Explorer can connect to an Azure Storage emulator. Currently, there are two supported emulators:
+a.	Azure Storage Emulator (Windows only)
+b.	Azurite (Windows, macOS, or Linux)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Azure File Sync
+1.	Azure File Sync enables centralizing your organization's file shares in Azure Files, while keeping the flexibility, performance, and compatibility of a Windows file server. 
+2.	Azure File Sync additionally has the ability to transform Windows Server into a quick cache of your Azure file share. 
+3.	You can use any protocol that's available on Windows Server to access your data locally, including SMB, NFS, and FTPS. 
+Benefits of Azure File Sync
+Cloud tiering: With cloud tiering enabled, your most frequently accessed files are cached on your local server and your least frequently accessed files are tiered to the cloud. You can control how much local disk space is used for caching.
+Multi-site access and sync: Azure File Sync is ideal for distributed access scenarios. For each of your offices, you can provision a local Windows Server as part of your Azure File Sync deployment. Changes made to a server in one office automatically sync to the servers in all other offices.
+Business continuity and disaster recovery: Azure File Sync is backed by Azure Files, which offers several redundancy options for highly available storage
+Cloud-side backup: Reduce your on-premises backup spending by taking centralized backups in the cloud using Azure Backup.
+
+
+
+
+
+
+
+
+
+
+
+
+Describe migration options, including Azure Migrate and Azure Data Box
+
+Azure Migrate
+Azure Migrate provides a centralized hub to assess and migrate on-premises servers, infrastructure, applications, and data to Azure. It provides the following:
+•	Unified migration platform: A single portal to start, run, and track your migration to Azure.
+•	Range of tools: A range of tools for assessment and migration. Azure Migrate tools include Azure Migrate: Discovery and assessment and Azure Migrate: Server Migration. Azure Migrate also integrates with other Azure services and tools, and with independent software vendor (ISV) offerings.
+•	Assessment and migration: In the Azure Migrate hub, you can assess and migrate:
+o	Servers, databases, and web apps: Assess on-premises servers including web apps and SQL Server instances and migrate them to Azure virtual machines or Azure VMware Solution (AVS) (Preview).
+o	Databases: Assess on-premises databases and migrate them to Azure SQL Database or to SQL Managed Instance.
+o	Web applications: Assess on-premises web applications and migrate them to Azure App Service.
+o	Virtual desktops: Assess your on-premises virtual desktop infrastructure (VDI) and migrate it to Azure Virtual Desktop.
+o	Data: Migrate large amounts of data to Azure quickly and cost-effectively using Azure Data Box products.
+
+Azure Data Box
+Use Azure Data Box products to move large amounts of offline data to Azure
+Use cases
+Data Box is ideally suited to transfer data sizes larger than 40 TBs in scenarios with no to limited network connectivity. The data movement can be one-time, periodic, or an initial bulk data transfer followed by periodic transfers.
+Here are the various scenarios where Data Box can be used to import data to Azure.
+1.	Onetime migration - when a large amount of on-premises data is moved to Azure.
+o	Moving a media library from offline tapes into Azure to create an online media library.
+o	Migrating your VM farm, SQL server, and applications to Azure.
+o	Moving historical data to Azure for in-depth analysis and reporting using HDInsight.
+2.	Initial bulk transfer - when an initial bulk transfer is done using Data Box (seed) followed by incremental transfers over the network.
+o	For example, backup solutions partners such as Commvault and Data Box are used to move initial large historical backup to Azure. Once complete, the incremental data is transferred via network to Microsoft Azure Storage.
+3.	Periodic uploads - when large amount of data is generated periodically and needs to be moved to Azure. For example, in energy exploration, where video content is generated on oil rigs and windmill farms.
+Here are the various scenarios where Data Box can be used to export data from Azure.
+1.	Disaster recovery - when a copy of the data from Azure is restored to an on-premises network. In a typical disaster recovery scenario, a large amount of Azure data is exported to a Data Box. Microsoft then ships this Data Box, and the data is restored on your premises in a short time.
+2.	Security requirements - when you need to be able to export data out of Azure due to government or security requirements. For example, Azure Storage is available in US Secret and Top-Secret clouds, and you can use Data Box to export data out of Azure.
+3.	Migrate back to on-premises or to another cloud service provider - when you want to move all the data back to on-premises, or to another cloud service provider, export data via Data Box to migrate the workloads.
+Benefits
+Data Box is designed to move large amounts of data to Azure with little to no impact to network. The solution has the following benefits:
+1.	Speed - Data Box uses 1-Gbps or 10-Gbps network interfaces to move up to 80 TB of data into and out of Azure.
+2.	Secure - Data Box has built-in security protections for the device, data, and the service.
+o	The device has a rugged casing secured by tamper-resistant screws and tamper-evident stickers.
+o	The data on the device is secured with an AES 256-bit encryption at all times.
+o	The device can only be unlocked with a password provided in the Azure portal.
+o	The service is protected by the Azure security features.
+o	Once the data from your import order is uploaded to Azure, the disks on the device are wiped clean in accordance with NIST 800-88r1 standards. For an export order, the disks are erased once the device reaches the Azure datacenter.
+For more information, go to Azure Data Box security and data protection.
+
