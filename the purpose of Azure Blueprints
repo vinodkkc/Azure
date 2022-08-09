@@ -1,0 +1,83 @@
+Describe the purpose of Azure Blueprints
+
+Govern multiple subscriptions by using Azure Blueprints –
+Azure Blueprints can define a repeatable set of governance tools and standard Azure resources that your organization requires. In this way, development teams can rapidly build and deploy new environments with the knowledge that they're building within organizational compliance with a set of built-in components that speed the development and deployment phases. Azure Blueprints orchestrates the deployment of various resource templates and other artifacts, such as Role assignments, Policy assignments, Azure Resource Manager templates and Resource groups.
+Azure Blueprints in action –
+When you form a cloud center of excellence team or a cloud custodian team, that team can use Azure Blueprints to scale their governance practices throughout the organization.
+Implementing a blueprint in Azure Blueprints involves these three steps:
+•	Create an Azure blueprint.
+•	Assign the blueprint.
+•	Track the blueprint assignments.
+With Azure Blueprints, the relationship between the blueprint definition (what should be deployed) and the blueprint assignment (what was deployed) is preserved. In other words, Azure creates a record that associates a resource with the blueprint that defines it. This connection helps you track and audit your deployments.
+Blueprints are also versioned. Versioning enables you to track and comment on changes to your blueprint.
+What are blueprint artifacts? –
+Each component in the blueprint definition is known as an artifact. It is possible for artifacts to have no additional parameters (configurations). An example is the Deploy threat detection on SQL servers policy, which requires no additional configuration. Artifacts can also contain one or more parameters that you can configure.
+You can specify a parameter's value when you create the blueprint definition or when you assign the blueprint definition to a scope. In this way, you can maintain one standard blueprint but have the flexibility to specify the relevant configuration parameters at each scope where the definition is assigned.
+
+
+Combine resource locks with Azure Blueprints –
+To make the protection process more robust, you can combine resource locks with Azure Blueprints. Azure Blueprints enables you to define the set of standard Azure resources that your organization requires. For example, you can define a blueprint that specifies that a certain resource lock must exist. Azure Blueprints can automatically replace the resource lock if that lock is removed.
+
+
+Describe the purpose of Azure Policy
+
+Control and audit your resources by using Azure Policy –
+Azure Policy is a service in Azure that enables you to create, assign, and manage policies that control or audit your resources. These policies enforce different rules across all of your resource configurations so that those configurations stay compliant with corporate standards.
+How does Azure Policy define policies? –
+Azure Policy enables you to define both individual policies and groups of related policies, known as initiatives. Azure Policy evaluates your resources and highlights resources that aren't compliant with the policies you've created. Azure Policy can also prevent noncompliant resources from being created.
+Azure Policy comes with built-in policy and initiative definitions for Storage, Networking, Compute, Security Center, and Monitoring. For example, if you define a policy that allows only a certain SKU (stock-keeping unit) size for the virtual machines (VMs) to be used in your environment, that policy is invoked when you create a new VM and whenever you resize existing VMs. Azure Policy also evaluates and monitors all current VMs in your environment.
+In some cases, Azure Policy can automatically remediate noncompliant resources and configurations to ensure the integrity of the state of the resources. For example, if all resources in a certain resource group should be tagged with AppName tag and a value of "SpecialOrders" Azure Policy will automatically reapply that tag if it was missing.
+Azure Policy also integrates with Azure DevOps by applying any continuous integration and delivery pipeline policies that pertain to the pre-deployment and post-deployment phases of your applications.
+Azure Policy in action –
+Implementing a policy in Azure Policy involves three tasks:
+•	Create a policy definition: A policy definition expresses what to evaluate and what action to take. Every policy definition has conditions under which it's enforced. A policy definition also has an accompanying effect that takes place when the conditions are met.
+•	Assign the definition to resources: To implement your policy definitions, you assign definitions to resources. A policy assignment is a policy definition that takes place within a specific scope. This scope could be a management group (a collection of multiple subscriptions), a single subscription, or a resource group.
+Policy assignments are inherited by all child resources within that scope. If a policy is applied to a resource group, that policy is applied to all resources within that resource group. You can exclude a subscope from the policy assignment if there are specific child resources you need to be exempt from the policy assignment.
+•	Review the evaluation results: When a condition is evaluated against your existing resources, each resource is marked as compliant or noncompliant. You can review the noncompliant policy results and take any action that's needed.
+Policy evaluation happens about once per hour. If you make changes to your policy definition and create a policy assignment, that policy is evaluated over your resources within the hour.
+What are Azure Policy initiatives? –
+An Azure Policy initiative is a way of grouping related policies together. The initiative definition contains all of the policy definitions to help track your compliance state for a larger goal. Azure Policy also includes initiatives that support regulatory compliance standards, such as HIPAA and ISO 27001.
+How do I define an initiative? –
+You define initiatives by using the Azure portal or command-line tools. From the Azure portal, you can search the list of built-in initiatives that are built into Azure. You also can create your own custom policy definition.
+How do I assign an initiative? –
+Like a policy assignment, an initiative assignment is an initiative definition that's assigned to a specific scope of a management group, a subscription, or a resource group.
+Even if you have only a single policy, an initiative enables you to increase the number of policies over time. Because the associated initiative remains assigned, it's easier to add and remove policies without the need to change the policy assignment for your resources.
+
+How do I manage resource tags? –
+You can add, modify, or delete resource tags through PowerShell, the Azure CLI, Azure Resource Manager templates, the REST API, or the Azure portal.
+You can also manage tags by using Azure Policy. For example, you can apply tags to a resource group, but those tags aren't automatically applied to the resources within that resource group. You can use Azure Policy to ensure that a resource inherits the same tags as its parent resource group.
+You can also use Azure Policy to enforce tagging rules and conventions. For example, you can require that certain tags be added to new resources as they're provisioned. You can also define rules that reapply tags that have been removed.
+An example tagging structure –
+A resource tag consists of a name and a value. You can assign one or more tags to each Azure resource.
+
+Describe the purpose of resource locks
+Prevent accidental changes by using resource locks –
+A resource lock prevents resources from being accidentally deleted or changed. Even with Azure role-based access control (Azure RBAC) policies in place, there's still a risk that people with the right level of access could delete critical cloud resources. Think of a resource lock as a warning system that reminds you that a resource should not be deleted or changed.
+How do I manage resource locks? –
+You can manage resource locks from the Azure portal, PowerShell, the Azure CLI, or from an Azure Resource Manager template. To view, add, or delete locks in the Azure portal, go to the Settings section of any resource's Settings pane in the Azure portal.
+What levels of locking are available? –
+You can apply locks to a subscription, a resource group, or an individual resource. You can set the lock level to CanNotDelete or ReadOnly –
+•	CanNotDelete means authorized people can still read and modify a resource, but they can't delete the resource without first removing the lock.
+•	ReadOnly means authorized people can read a resource, but they can't delete or change the resource. Applying this lock is like restricting all authorized users to the permissions granted by the Reader role in Azure RBAC.
+How do I delete or change a locked resource? –
+Although locking helps prevent accidental changes, you can still make changes by following a two-step process.
+To modify a locked resource, you must first remove the lock. After you remove the lock, you can apply any action you have permissions to perform. This additional step allows the action to be taken, but it helps protect your administrators from doing something they might not have intended to do.
+Resource locks apply regardless of RBAC permissions. Even if you're an owner of the resource, you must still remove the lock before you can perform the blocked activity.
+Combine resource locks with Azure Blueprints –
+To make the protection process more robust, you can combine resource locks with Azure Blueprints. Azure Blueprints enables you to define the set of standard Azure resources that your organization requires. For example, you can define a blueprint that specifies that a certain resource lock must exist. Azure Blueprints can automatically replace the resource lock if that lock is removed.
+Organize your Azure resources by using tags –
+One way to organize related resources is to place them in their own subscriptions. You can also use resource groups to manage related resources. Resource tags are another way to organize resources. Tags provide extra information, or metadata, about your resources. This metadata is useful for:
+•	Resource management Tags enable you to locate and act on resources that are associated with specific workloads, environments, business units, and owners.
+•	Cost management and optimization Tags enable you to group resources so that you can report on costs, allocate internal cost centers, track budgets, and forecast estimated cost.
+•	Operations management Tags enable you to group resources according to how critical their availability is to your business. This grouping helps you formulate service-level agreements (SLAs). An SLA is an uptime or performance guarantee between you and your users.
+•	Security Tags enable you to classify data by its security level, such as public or confidential.
+•	Governance and regulatory compliance Tags enable you to identify resources that align with governance or regulatory compliance requirements, such as ISO 27001. Tags can also be part of your standards enforcement efforts. For example, you might require that all resources be tagged with an owner or department name.
+•	Workload optimization and automation Tags can help you visualize all of the resources that participate in complex deployments. For example, you might tag a resource with its associated workload or application name and use software such as Azure DevOps to perform automated tasks on those resources.
+
+Describe the purpose of the Service Trust Portal
+Service Trust Portal
+The Service Trust Portal, also referred to simply as STP, is a service feature available within Microsoft Office 365 that provides current and prospective users of the platform with a wealth of insight into how the tech giant manages privacy, compliance, and security.
+
+It Helps you to download publish audit reports and How Microsoft manages and operates build.
+
+
