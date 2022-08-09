@@ -1,0 +1,168 @@
+Azure Service Health (ASH)
+1.	Azure Service Health notifies you about Azure service incidents and planned maintenance so you can take action to mitigate downtime. Configure customizable cloud alerts and use your personalized dashboard to analyze health issues, monitor the impact to your cloud resources
+2.	Review active incidents, planned maintenance and health advisories in a personalized dashboard for service health based on your Azure subscriptions, services and regions.
+3.	Configure customizable alerts to notify you of service incidents, planned maintenance and health advisories. Receive alerts via your preferred channels, including email, SMS, push notification, webhook and popular IT service management tools such as ServiceNow
+4.	Download official reports and root cause analyses (RCAs): Track events in real time on mobile devices or in your problem-management system with persistent links and download official reports from Microsoft. 
+5.	An Administrator can view the health of all the services deployed to an azure environment and all the services available in Azure.
+6.	The Service issues view shows any ongoing problems in Azure services that are impacting your resources. You can understand when the issue began, and what services and regions are impacted. You can also read the most recent update to understand what Azure is doing to resolve the issue.
+7.	Administrator can create a rule to be alerted if an azure service fails
+8.	Administrator cannot prevent a service failure from affecting a specific virtual machine.
+9.	ASH to be used when you want to be notified if your app service exceeds the usage quota
+10.	When you want to respond to planned service outages in Virginia
+11.	When you want to implement webhooks on your website to deploy health incidents
+12.	ASH is azure component to provide information about planned maintenance and advisories
+13.	ASH includes resource health which reposts about individual resource through a configurable dashboard
+14.	Health Advisories should be used when you want to view the azure features that are plan to be depreciated
+15.	Personalized dashboard shows the service issues that affect you
+16.	To view Service Health events, users must have the reader role on a subscription.
+17.	When events become inactive, they get placed in your health history for up to 90 days.
+18.	Service Health dashboard to create and manage service health alerts which proactively notify you when service issues are affecting you.
+
+Service Health tracks four types of health events that may impact your resources:
+1.	Service issues - Problems in the Azure services that affect you right now.
+2.	Planned maintenance - Upcoming maintenance that can affect the availability of your services in the future.
+3.	Health advisories - Changes in Azure services that require your attention. Examples include deprecation of Azure features or upgrade requirements (e.g upgrade to a supported PHP framework).
+4.	Security advisories - Security related notifications or violations that may affect the availability of your Azure services.
+
+Azure Resource Health
+1.	Azure Resource Health helps you diagnose and get support for service problems that affect your Azure resources. It reports on the current and past health of your resources.
+2.	Resource Health gives you a personalized dashboard of the health of your resources. 
+3.	Resource Health shows all the times that your resources have been unavailable because of Azure service problems. Like helps to view the number of VM that are currently down
+4.	If a resource is unhealthy, Resource Health analyzes additional information to determine the source of the problem. It also reports on actions that Microsoft is taking to fix the problem and identifies things that you can do to address it.
+5.	Health status:
+a.	Available means that there are no events detected that affect the health of the resource. In cases where the resource recovered from unplanned downtime during the last 24 hours, you'll see a "Recently resolved" notification.
+b.	Unavailable means that the service detected an ongoing platform or non-platform event that affects the health of the resource.
+c.	Unknown means that Resource Health hasn't received information about the resource for more than 10 minutes. This commonly occurs when virtual machines have been deallocated. 
+d.	Degraded means that your resource detected a loss in performance, although it's still available for use.
+6.	If Azure has further information about the root cause of a platform-initiated unavailability, that information may be posted in resource health up to 72 hours after the initial unavailability. This information is only available for virtual machines at this time.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Azure Monitor overview
+1.	Azure Monitor helps you maximize the availability and performance of your applications and services. 
+2.	It delivers a comprehensive solution for collecting, analyzing, and acting on telemetry from your cloud and on-premises environments. This information helps you understand how your applications are performing and proactively identify issues affecting them and the resources they depend on. 
+3.	Metrics tell you how the resource is performing and the resources that it's consuming. They are numerical values that describe some aspect of a system at a particular point in time. They are lightweight and capable of supporting near real-time scenarios. 
+4.	Logs record when resources are created or modified and contain different kinds of data organized into records with different sets of properties for each type. Telemetry such as events and traces are stored as logs in addition to performance data so that it can all be combined for analysis.
+5.	Log Analytics  You can create and test queries and analyzed data with queries to quickly retrieve, consolidate, and analyze collected data
+6.	Azure Monitor starts collecting data, As soon as you create an Azure subscription and start adding resources such as virtual machines and web apps
+7.	Alerts in Azure Monitor proactively notify you of critical conditions and potentially attempt to take corrective action
+8.	Azure Monitor has its own features for visualizing monitoring data and leverages other Azure services for publishing it to different audiences.
+9.	Auto scale allows you to have the right amount of resources running to handle the load on your application. Create rules that use metrics collected by Azure Monitor to determine when to automatically add resources when load increases. Save money by removing resources that are sitting idle. You specify a minimum and maximum number of instances and the logic for when to increase or decrease resources.
+10.	Workbooks provide a flexible canvas for data analysis and the creation of rich visual reports in the Azure portal. They allow you to tap into multiple data sources from across Azure, and combine them into unified interactive experiences.
+11.	You can configure Power BI to automatically import log data from Azure Monitor to take advantage of these additional visualizations.
+12.	Integrate and export data
+13.	Multiple APIs are available to read and write metrics and logs to and from Azure Monitor in addition to accessing generated alerts. You can also configure and retrieve alerts. This provides you with essentially unlimited possibilities to build custom solutions that integrate with Azure Monitor.
+
+
+
+
+
+
+
+
+Log Analytics in Azure Monitor
+1.	Log Analytics is a tool in the Azure portal used to edit and run log queries with data in Azure Monitor Logs. 
+2.	Helps to write a simple query that returns a set of records and then use features of Log Analytics to sort, filter, and analyze them. Or you may write a more advanced query to perform statistical analysis and visualize the results in a chart to identify a particular trend. 
+3.	If you start it from the Azure Monitor menu or the Log Analytics workspaces menu, you'll have access to all of the records in a workspace.
+4.	If you're already familiar with the Azure Data Explorer Web UI, then Log Analytics should look familiar. That's because it's built on top of Azure Data Explorer and uses the same Kusto Query Language (KQL). 
+5.	Azure Data Explorer Web UI primarily works with tables in Azure Data Explorer databases while Log Analytics works with tables in a Log Analytics workspace.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Azure Monitor Alerts
+1.	Alerts help you detect and address issues before users notice them by proactively notifying you when Azure Monitor data indicates that there may be a problem with your infrastructure or application.
+2.	You can alert on any metric or log data source in the Azure Monitor data platform.
+3.	Alerts in Azure Monitor proactively notify you of critical conditions and potentially attempt to take corrective action. Alert rules based on metrics provide near real time alerts based on numeric values.
+Alert type	Description
+Metric alerts
+Metric alerts evaluate resource metrics at regular intervals. Metrics can be platform metrics, custom metrics, logs from Azure Monitor converted to metrics or Application Insights metrics. Metric alerts have several additional features (link), such as the ability to apply multiple conditions and dynamic thresholds.
+Log alerts
+Log alerts allow users to use a Log Analytics query to evaluate resource logs at a predefined frequency.
+Activity log alerts
+Activity log alerts are triggered when a new activity log event occurs that matches the defined conditions.
+Smart detection alerts
+Smart detection on an Application Insights resource automatically warns you of potential performance problems and failure anomalies in your web application. You can migrate smart detection on your Application Insights resource to create alert rules for the different smart detection modules.
+4.	(Azure RBAC) for alerts
+You can only access, create, or manage alerts for resources for which you have permissions. To create an alert rule, you need to have the following permissions:
+•	Read permission on the target resource of the alert rule
+•	Write permission on the resource group in which the alert rule is created (if you’re creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides)
+•	Read permission on any action group associated to the alert rule (if applicable) These built-in Azure roles, supported at all Azure Resource Manager scopes, have permissions to and access alerts information and create alert rules:
+•	monitoring contributor
+•	monitoring reader
+5.	Alerts and State
+You can configure whether log or metric alerts are stateful or stateless. Activity log alerts are stateless.
+•	Stateless alerts fire each time the condition is met, even if fired previously.
+•	Stateful alerts fire when the condition is met and then don't fire again or trigger any more actions until the conditions are resolved.
+Application Insights is a feature of Azure Monitor that provides extensible application performance management (APM) and monitoring for live web apps. Developers and DevOps professionals can use Application Insights to:
+•	Application Insights monitors the availability, performance, and usage of your web applications whether they're hosted in the cloud or on-premises
+•	Automatically detect performance anomalies.
+•	Help diagnose issues by using powerful analytics tools.
+•	See what users actually do with apps.
+•	Help continuously improve app performance and usability.
+•	collect detailed information including page views, application requests, and exceptions.
+•	powerful data analysis platform in Azure Monitor to provide you with deep insights into your application's operations.
+•	Supports a wide variety of platforms, including .NET, Node.js, Java, and Python.
+•	Works for apps hosted on-premises, hybrid, or on any public cloud.
+•	Integrates with DevOps processes.
+•	Has connection points to many development tools.
+•	Can monitor and analyze telemetry from mobile apps by integrating with Visual Studio App Center.
+•	no charge until your app has substantial usage.
+
+Application Insights monitors
+1.	Request rates, response times, and failure rates: Find out which pages are most popular, at what times of day, and where users are. See which pages perform best. If response times and failure rates are high when there are more requests, there might be a resourcing problem.
+2.	Dependency rates, response times, and failure rates, to show whether external services are slowing down performance
+3.	Exceptions: Analyze the aggregated statistics, or pick specific instances and drill into the stack trace and related requests. Application Insights reports both server and browser exceptions.
+4.	Page views and load performance reported by users' browsers
+5.	AJAX calls from web pages, including rates, response times, and failure rates
+6.	User and session counts
+7.	Performance counters from Windows or Linux server machines, such as CPU, memory, and network usage
+8.	Host diagnostics from Docker or Azure
+9.	Diagnostic trace logs from apps, so you can correlate trace events with requests
+10.	Custom events and metrics in client or server code that track business events, like items sold
+
+
+
+
+
+
+
+
+
+
+Container Insights
+
+Container insights monitors the performance of container workloads that are deployed to managed Kubernetes clusters hosted on Azure Kubernetes Service
+VM insights
+VM insights monitors your Azure virtual machines (VM) at scale. It analyzes the performance and health of your Windows and Linux VMs and identifies their different processes and interconnected dependencies on external processes.
+
