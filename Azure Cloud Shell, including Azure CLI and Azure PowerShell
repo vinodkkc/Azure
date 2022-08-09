@@ -1,0 +1,65 @@
+Describe Azure Cloud Shell, including Azure CLI and Azure PowerShell
+Azure Cloud Shell
+1.	Azure Cloud Shell is an interactive, authenticated, browser-accessible shell for managing Azure resources.
+2.	used to manage settings of the web app from iPhone
+3.	Cloud Shell runs on a temporary host provided on a per-session, per-user basis
+4.	Cloud Shell times out after 20 minutes without interactive activity
+5.	Cloud Shell requires an Azure file share to be mounted
+6.	Cloud Shell uses the same Azure file share for both Bash and PowerShell
+7.	Cloud Shell is assigned one machine per user account
+8.	Cloud Shell persists $HOME using a 5-GB image held in your file share
+9.	Permissions are set as a regular Linux user in Bash
+10.	All Cloud Shell infrastructure is compliant with double encryption at rest by default. No action is required by users.
+11.	The machine hosting Cloud Shell is free, with a pre-requisite of a mounted Azure Files share. Regular storage costs apply
+12.	Cloud Shell securely and automatically authenticates account access for the Azure CLI and Azure PowerShell.
+13.	PowerShell in Cloud Shell provides the Azure drive (Azure:). You can switch to the Azure drive with cd Azure: and back to your home directory with cd ~. The Azure drive enables easy discovery and navigation of Azure resources such as Compute, Network, Storage etc. similar to filesystem navigation. 
+14.	PowerShell in Cloud Shell contains a private build of the Exchange Online module. Run Connect-EXOPSSession to get your Exchange cmdlets.
+15.	Cloud Shell includes pre-configured authentication for open-source tools such as Terraform, Ansible, and Chef InSpec
+
+
+
+
+
+
+
+
+
+Azure CLI
+1.	The Azure Command-Line Interface (CLI) is a cross-platform command-line tool
+2.	used to manage settings of the web app from iPhone
+3.	You can install the Azure CLI locally on Linux, Mac, or Windows computers.
+4.	Azure CLI  can also be used from a browser through the Azure Cloud Shell or run from inside a Docker container.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Azure PowerShell
+1.	Azure PowerShell is a set of cmdlets for managing Azure resources directly from PowerShell.
+2.	The Az PowerShell module is the recommended PowerShell module for managing Azure resources on all platforms.
+3.	The Az PowerShell module is based on the .NET Standard, and works with PowerShell 7.0.6 LTS and PowerShell 7.1.3 or higher on all platforms including Windows, macOS, and Linux. It's also compatible with Windows PowerShell 5.1.
+4.	PowerShell 7.0.6 LTS and PowerShell 7.1.3 or higher is the recommended version of PowerShell for use with the Az PowerShell module on all platforms.
+5.	You can install the Az PowerShell module locally on Windows, macOS, and Linux.
+6.	Az PowerShell can also be used from a browser through Azure Cloud Shell or inside a Docker container. 
+7.	The cmdlets in the Az PowerShell module make REST calls to the Azure API.
+8.	The Az PowerShell module contains cmdlets for performing both control plane and data plane operations in Azure.
+9.	
+
+Use cases: Azure CLI and Azure Cloud shell is used to manage settings of the web app from iPhone.
