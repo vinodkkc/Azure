@@ -1,0 +1,214 @@
+Compare authentication and authorization –
+What is authentication? –
+Authentication is the process of establishing the identity of a person or service that wants to access a resource. It involves the act of challenging a party for legitimate credentials and provides the basis for creating a security principal for identity and access control. It establishes whether the user is who they say they are.
+What is authorization? –
+Authentication establishes the user's identity, but authorization is the process of establishing what level of access an authenticated person or service has. It specifies what data they're allowed to access and what they can do with it.
+How are authentication and authorization related? –
+The identification card represents credentials that the user has to prove their identity. Once authenticated, authorization defines what kinds of applications, resources, and data that user can access.
+What is Azure Active Directory? –
+Azure Active Directory (Azure AD) provides identity services that enable your users to sign in and access both Microsoft cloud applications and cloud applications that you develop.
+How does Azure AD compare to Active Directory? –
+Active Directory is related to Azure AD, but they have some key differences.
+Microsoft introduced Active Directory in Windows 2000 to give organizations the ability to manage multiple on-premises infrastructure components and systems by using a single identity per user.
+For on-premises environments, Active Directory running on Windows Server provides an identity and access management service that's managed by your own organization. Azure AD is Microsoft's cloud-based identity and access management service. With Azure AD, you control the identity accounts, but Microsoft ensures that the service is available globally. If you've worked with Active Directory, Azure AD will be familiar to you.
+When you secure identities on-premises with Active Directory, Microsoft doesn't monitor sign-in attempts. When you connect Active Directory with Azure AD, Microsoft can help protect you by detecting suspicious sign-in attempts at no extra cost. For example, Azure AD can detect sign-in attempts from unexpected locations or unknown devices.
+Who uses Azure AD? –
+•	IT administrators: Administrators can use Azure AD to control access to applications and resources based on their business requirements.
+•	App developers: Developers can use Azure AD to provide a standards-based approach for adding functionality to applications that they build, such as adding SSO functionality to an app or enabling an app to work with a user's existing credentials.
+•	Users: Users can manage their identities. For example, self-service password reset enables users to change or reset their password with no involvement from an IT administrator or help desk.
+•	Online service subscribers: Microsoft 365, Microsoft Office 365, Azure, and Microsoft Dynamics CRM Online subscribers are already using Azure AD. A tenant is a representation of an organization. A tenant is typically separated from other tenants and has its own identity. Each Microsoft 365, Office 365, Azure, and Dynamics CRM Online tenant is automatically an Azure AD tenant.
+What services does Azure AD provide? –
+Azure AD provides services such as:
+•	Authentication: This includes verifying identity to access applications and resources. It also includes providing functionality such as self-service password reset, multifactor authentication, a custom list of banned passwords, and smart lockout services.
+•	Single sign-on: SSO enables you to remember only one username and one password to access multiple applications. A single identity is tied to a user, which simplifies the security model. As users change roles or leave an organization, access modifications are tied to that identity, which greatly reduces the effort needed to change or disable accounts.
+•	Application management: You can manage your cloud and on-premises apps by using Azure AD. Features like Application Proxy, SaaS apps, the My Apps portal (also called the access panel), and single sign-on provide a better user experience.
+•	Device management: Along with accounts for individual people, Azure AD supports the registration of devices. Registration enables devices to be managed through tools like Microsoft Intune. It also allows for device-based Conditional Access policies to restrict access attempts to only those coming from known devices, regardless of the requesting user account.
+What kinds of resources can Azure AD help secure? –
+Azure AD helps users access both external and internal resources. External resources might include Microsoft Office 365, the Azure portal, and thousands of other software as a service (SaaS) applications. Internal resources might include apps on your corporate network and intranet, along with any cloud applications developed within your organization.
+What's single sign-on? –
+Single sign-on enables a user to sign in one time and use that credential to access multiple resources and applications from different providers.
+More identities mean more passwords to remember and change. Password policies can vary among applications. As complexity requirements increase, it becomes increasingly difficult for users to remember them. The more passwords a user has to manage, the greater the risk of a credential-related security incident.
+Consider the process of managing all those identities. Additional strain is placed on help desks as they deal with account lockouts and password reset requests. If a user leaves an organization, tracking down all those identities and ensuring they are disabled can be challenging. If an identity is overlooked, this might allow access when it should have been eliminated.
+With SSO, you need to remember only one ID and one password. Access across applications is granted to a single identity that's tied to the user, which simplifies the security model. As users change roles or leave an organization, access is tied to a single identity. This change greatly reduces the effort needed to change or disable accounts. Using SSO for accounts makes it easier for users to manage their identities and increases your security capabilities.
+How can I connect Active Directory with Azure AD? –
+Connecting Active Directory with Azure AD enables you to provide a consistent identity experience to your users.
+There are a few ways to connect your existing Active Directory installation with Azure AD. Perhaps the most popular method is to use Azure AD Connect.
+Azure AD Connect synchronizes user identities between on-premises Active Directory and Azure AD. Azure AD Connect synchronizes changes between both identity systems, so you can use features like SSO, multifactor authentication, and self-service password reset under both systems. Self-service password reset prevents users from using known compromised passwords.
+What are multifactor authentication and Conditional Access? –
+What's multifactor authentication? –
+Multifactor authentication is a process where a user is prompted during the sign-in process for an additional form of identification. Multifactor authentication provides additional security for your identities by requiring two or more elements to fully authenticate. These elements fall into three categories:
+•	Something the user knows: This might be an email address and password.
+•	Something the user has: This might be a code that's sent to the user's mobile phone.
+•	Something the user is: This is typically some sort of biometric property, such as a fingerprint or face scan that's used on many mobile devices.
+Multifactor authentication increases identity security by limiting the impact of credential exposure (for example, stolen usernames and passwords). With multifactor authentication enabled, an attacker who has a user's password would also need to have possession of their phone or their fingerprint to fully authenticate.
+Compare multifactor authentication with single-factor authentication. Under single-factor authentication, an attacker would need only a username and password to authenticate. Multifactor authentication should be enabled wherever possible because it adds enormous benefits to security.
+What's Azure AD Multi-Factor Authentication? –
+Azure AD Multi-Factor Authentication is a Microsoft service that provides multifactor authentication capabilities. Azure AD Multi-Factor Authentication enables users to choose an additional form of authentication during sign-in, such as a phone call or mobile app notification. These services provide Azure AD Multi-Factor Authentication capabilities:
+•	Azure Active Directory: The Azure Active Directory free edition enables Azure AD Multi-Factor Authentication for administrators with the global admin level of access, via the Microsoft Authenticator app, phone call, or SMS code. You can also enforce Azure AD Multi-Factor Authentication for all users via the Microsoft Authenticator app only, by enabling security defaults in your Azure AD tenant.
+Azure Active Directory Premium (P1 or P2 licenses) allows for comprehensive and granular configuration of Azure AD Multi-Factor Authentication through Conditional Access policies (explained shortly).
+•	Multifactor authentication for Office 365: A subset of Azure AD Multi-Factor Authentication capabilities is part of your Office 365 subscription.
+What's Conditional Access? –
+Conditional Access is a tool that Azure Active Directory uses to allow (or deny) access to resources based on identity signals. These signals include who the user is, where the user is, and what device the user is requesting access from.
+Conditional Access helps IT administrators:
+•	Empower users to be productive wherever and whenever.
+•	Protect the organization's assets.
+Conditional Access also provides a more granular multifactor authentication experience for users. For example, a user might not be challenged for second authentication factor if they're at a known location. However, they might be challenged for a second authentication factor if their sign-in signals are unusual or they're at an unexpected location.
+During sign-in, Conditional Access collects signals from the user, makes decisions based on those signals, and then enforces that decision by allowing or denying the access request or challenging for a multifactor authentication response.
+•	Here, the signal might be the user's location, the user's device, or the application that the user is trying to access.
+•	Based on these signals, the decision might be to allow full access if the user is signing in from their usual location. If the user is signing in from an unusual location or a location that's marked as high risk, then access might be blocked entirely or possibly granted after the user provides a second form of authentication.
+•	Enforcement is the action that carries out the decision. For example, the action is to allow access or require the user to provide a second form of authentication.
+When can I use Conditional Access? –
+Conditional Access is useful when you need to:
+•	Require multifactor authentication to access an application: You can configure whether all users require multifactor authentication or only certain users, such as administrators. You can also configure whether multifactor authentication applies to access from all networks or only untrusted networks.
+•	Require access to services only through approved client applications: For example, you might want to allow users to access Office 365 services from a mobile device as long as they use approved client apps, like the Outlook mobile app.
+•	Require users to access your application only from managed devices: A managed device is a device that meets your standards for security and compliance.
+•	Block access from untrusted sources, such as access from unknown or unexpected locations.
+Conditional Access comes with a What If tool, which helps you plan and troubleshoot your Conditional Access policies. You can use this tool to model your proposed Conditional Access policies across recent sign-in attempts from your users to see what the impact would have been if those policies had been enabled. The What If tool enables you to test your proposed Conditional Access policies before you implement them.
+Where is Conditional Access available? –
+To use Conditional Access, you need an Azure AD Premium P1 or P2 license. If you have a Microsoft 365 Business Premium license, you also have access to Conditional Access features.
+
+
+What is Azure Active Directory Domain Services?
+Azure Active Directory Domain Services (Azure AD DS) provides managed domain services such as domain join, group policy, lightweight directory access protocol (LDAP), and Kerberos/NTLM authentication. You use these domain services without the need to deploy, manage, and patch domain controllers (DCs) in the cloud.
+An Azure AD DS managed domain lets you run legacy applications in the cloud that can't use modern authentication methods, or where you don't want directory lookups to always go back to an on-premises AD DS environment. You can lift and shift those legacy applications from your on-premises environment into a managed domain, without needing to manage the AD DS environment in the cloud.
+
+Azure AD DS integrates with your existing Azure AD tenant. This integration lets users sign in to services and applications connected to the managed domain using their existing credentials. You can also use existing groups and user accounts to secure access to resources. These features provide a smoother lift-and-shift of on-premises resources to Azure.
+ 
+
+Azure AD DS features and benefits
+1. Simplified deployment experience: Azure AD DS is enabled for your Azure AD tenant using a single wizard in the Azure portal.
+2. Integrated with Azure AD: User accounts, group memberships, and credentials are automatically available from your Azure AD tenant. New users, groups, or changes to attributes from your Azure AD tenant or your on-premises AD DS environment are automatically synchronized to Azure AD DS.
+Accounts in external directories linked to your Azure AD aren't available in Azure AD DS. Credentials aren't available for those external directories, so can't be synchronized into a managed domain.
+3. Use your corporate credentials/passwords: Passwords for users in Azure AD DS are the same as in your Azure AD tenant. Users can use their corporate credentials to domain-join machines, sign in interactively or over remote desktop, and authenticate against the managed domain.
+4.NTLM and Kerberos authentication: With support for NTLM and Kerberos authentication, you can deploy applications that rely on Windows-integrated authentication.
+5.High availability: Azure AD DS includes multiple domain controllers, which provide high availability for your managed domain. This high availability guarantees service uptime and resilience to failures.
+In regions that support Azure Availability Zones, these domain controllers are also distributed across zones for additional resiliency.
+Replica sets can also be used to provide geographical disaster recovery for legacy applications if an Azure region goes offline.
+
+Describe external identities and guest access in Azure
+External Identities: 
+Azure AD External Identities refers to all the ways you can securely interact with users outside of your organization. If you want to collaborate with partners, distributors, suppliers, or vendors, you can share your resources and define how your internal users can access external organizations. If you're a developer creating consumer-facing apps, you can manage your customers' identity experiences.
+
+With External Identities, external users can "bring their own identities." Whether they have a corporate or government-issued digital identity, or an unmanaged social identity like Google or Facebook, they can use their own credentials to sign in. The external user’s identity provider manages their identity, and you manage access to your apps with Azure AD or Azure AD B2C to keep your resources protected.
+
+The following capabilities make up External Identities:
+B2B collaboration - Collaborate with external users by letting them use their preferred identity to sign in to your Microsoft applications or other enterprise applications (SaaS apps, custom-developed apps, etc.). B2B collaboration users are represented in your directory, typically as guest users.
+
+B2B direct connect - Establish a mutual, two-way trust with another Azure AD organization for seamless collaboration. B2B direct connect currently supports Teams shared channels, enabling external users to access your resources from within their home instances of Teams. B2B direct connect users aren't represented in your directory, but they're visible from within the Teams shared channel and can be monitored in Teams admin center reports.
+
+Azure AD B2C - Publish modern SaaS apps or custom-developed apps (excluding Microsoft apps) to consumers and customers, while using Azure AD B2C for identity and access management.
+
+Depending on how you want to interact with external organizations and the types of resources you need to share, you can use a combination of these capabilities.
+ 
+
+Manage guest access with Azure AD access 
+With Azure Active Directory (Azure AD), you can easily enable collaboration across organizational boundaries by using the Azure AD B2B feature. Guest users from other tenants can be invited by administrators or by other users. This capability also applies to social identities such as Microsoft accounts.
+
+You also can easily ensure that guest users have appropriate access. You can ask the guests themselves or a decision maker to participate in an access review and recertify (or attest) to the guests' access. The reviewers can give their input on each user's need for continued access, based on suggestions from Azure AD. When an access review is finished, you can then make changes and remove access for guests who no longer need it.
+
+Azure AD Conditional Access
+ Conditional Access brings signals together, to make decisions, and enforce organizational policies. Azure AD Conditional Access is at the heart of the new identity-driven control plane.
+ 
+Conditional Access policies at their simplest are if-then statements, if a user wants to access a resource, then they must complete an action. Example: A payroll manager wants to access the payroll application and is required to do multi-factor authentication to access it.
+
+Administrators are faced with two primary goals:
+•	Empower users to be productive wherever and whenever
+•	Protect the organization's assets
+
+Use Conditional Access policies to apply the right access controls when needed to keep your organization secure.
+ 
+Conditional Access policies are enforced after first-factor authentication is completed. Conditional Access isn't intended to be an organization's first line of defense for scenarios like denial-of-service (DoS) attacks, but it can use signals from these events to determine access.
+
+Common signals
+Common signals that Conditional Access can take in to account when making a policy decision include the following signals:
+1.	User or group membership: Policies can be targeted to specific users and groups giving administrators fine-grained control over access.
+2.	IP Location information: 
+a.	Organizations can create trusted IP address ranges that can be used when making policy decisions.
+b.	Administrators can specify entire countries/regions IP ranges to block or allow traffic from.
+3.	Device:
+a. Users with devices of specific platforms or marked with a specific state can be used when enforcing Conditional Access policies.
+b. Use filters for devices to target policies to specific devices like privileged access workstations.
+4.	Application: Users attempting to access specific applications can trigger different Conditional Access policies.
+5.	Real-time and calculated risk detection : Signals integration with Azure AD Identity Protection allows Conditional Access policies to identify risky sign-in behavior. Policies can then force users to change their password, do multi-factor authentication to reduce their risk level, or block access until an administrator takes manual action.
+6.	Microsoft Defender for Cloud Apps : Enables user application access and sessions to be monitored and controlled in real time, increasing visibility and control over access to and activities done within your cloud environment.
+
+
+Common decisions
+1.	Block access: Most restrictive decision
+2.	Grant access
+•	Least restrictive decision, can still require one or more of the following options:
+a.	Require multi-factor authentication
+b.	Require device to be marked as compliant
+c.	Require Hybrid Azure AD joined device
+d.	Require approved client app
+e.	Require app protection policy (preview)
+
+Describe the concept of Zero Trust
+Microsoft has adopted a Zero Trust strategy to secure corporate and customer data. The implementation centers on strong user identity, device health verification, validation of app health, and least-privilege access to resources and services.
+
+Defense in depth model
+ Defense in Depth (DiD) refers to an information security approach in which a series of security mechanisms and controls are thoughtfully layered throughout a computer network to protect the confidentiality, integrity, and availability of the network and the data within.
+What is defense in depth? –
+The objective of defense in depth is to protect information and prevent it from being stolen by those who aren't authorized to access it. A defense-in-depth strategy uses a series of mechanisms to slow the advance of an attack that aims at acquiring unauthorized access to data.
+Layers of defense in depth –
+You can visualize defense in depth as a set of layers, with the data to be secured at the center. Each layer provides protection so that if one layer is breached, a subsequent layer is already in place to prevent further exposure. This approach removes reliance on any single layer of protection. It slows down an attack and provides alert telemetry that security teams can act upon, either automatically or manually. Here's a brief overview of the role of each layer:
+•	The physical security layer is the first line of defense to protect computing hardware in the datacenter.
+•	The identity and access layer controls access to infrastructure and change control.
+•	The perimeter layer uses distributed denial of service (DDoS) protection to filter large-scale attacks before they can cause a denial of service for users.
+•	The network layer limits communication between resources through segmentation and access controls.
+•	The compute layer secures access to virtual machines.
+•	The application layer helps ensure that applications are secure and free of security vulnerabilities.
+•	The data layer controls access to business and customer data that you need to protect.
+These layers provide a guideline for you to help make security configuration decisions in all of the layers of your applications.
+Azure provides security tools and features at every level of the defense-in-depth concept. Let's take a closer look at each layer:
+•	Physical security: Physically securing access to buildings and controlling access to computing hardware within the datacenter are the first line of defense. With physical security, the intent is to provide physical safeguards against access to assets. These safeguards ensure that other layers can't be bypassed, and loss or theft is handled appropriately. Microsoft uses various physical security mechanisms in its cloud datacenters.
+•	Identity and access: At this layer, it's important to:
+	Control access to infrastructure and change control.
+	Use single sign-on (SSO) and multifactor authentication.
+	Audit events and changes.
+The identity and access layer is all about ensuring that identities are secure, access is granted only to what's needed, and sign-in events and changes are logged.
+•	Perimeter: At this layer, it's important to:
+	Use DDoS protection to filter large-scale attacks before they can affect the availability of a system for users.
+	Use perimeter firewalls to identify and alert on malicious attacks against your network.
+At the network perimeter, it's about protecting from network-based attacks against your resources. Identifying these attacks, eliminating their impact, and alerting you when they happen are important ways to keep your network secure.
+•	Network: At this layer, it's important to:
+	Limit communication between resources.
+	Deny by default.
+	Restrict inbound internet access and limit outbound access where appropriate.
+	Implement secure connectivity to on-premises networks.
+At this layer, the focus is on limiting the network connectivity across all your resources to allow only what's required. By limiting this communication, you reduce the risk of an attack spreading to other systems in your network.
+•	Compute: At this layer, it's important to:
+	Secure access to virtual machines.
+	Implement endpoint protection on devices and keep systems patched and current.
+Malware, unpatched systems, and improperly secured systems open your environment to attacks. The focus in this layer is on making sure that your compute resources are secure and that you have the proper controls in place to minimize security issues.
+•	Application: At this layer, it's important to:
+	Ensure that applications are secure and free of vulnerabilities.
+	Store sensitive application secrets in a secure storage medium.
+	Make security a design requirement for all application development.
+Integrating security into the application development lifecycle helps reduce the number of vulnerabilities introduced in code. Every development team should ensure that its applications are secure by default.
+•	Data: In almost all cases, attackers are after data:
+	Stored in a database.
+	Stored on disk inside virtual machines.
+	Stored in software as a service (SaaS) applications, such as Office 365.
+	Managed through cloud storage.
+Those who store and control access to data are responsible for ensuring that it's properly secured. Often, regulatory requirements dictate the controls and processes that must be in place to ensure the confidentiality, integrity, and availability of the data.
+
+
+Microsoft Defender for Cloud
+ Defender for Cloud is a tool for security posture management and threat protection. It strengthens the security posture of your cloud resources, and with its integrated Microsoft Defender plans, Defender for Cloud protects workloads running in Azure, hybrid, and other cloud platforms.
+
+Defender for Cloud provides the tools needed to harden your resources, track your security posture, protect against cyber attacks, and streamline security management. Because it's natively integrated, deployment of Defender for Cloud is easy, providing you with simple auto provisioning to secure your resources by default.
+
+Defender for Cloud fills three vital needs as you manage the security of your resources and workloads in the cloud and on-premises:
+ 
+
+Microsoft Defender for Cloud's features covers the two broad pillars of cloud security: cloud security posture management and cloud workload protection.
+Cloud security posture management (CSPM): In Defender for Cloud, the posture management features provide:
+
+•	Visibility - to help you understand your current security situation
+•	Hardening guidance - to help you efficiently and effectively improve your security
+The central feature in Defender for Cloud that enables you to achieve those goals is secure score. Defender for Cloud continually assesses your resources, subscriptions, and organization for security issues
+
+Cloud workload protection (CWP)
+Defender for Cloud offers security alerts that are powered by Microsoft Threat Intelligence. It also includes a range of advanced, intelligent, protections for your workloads. The workload protections are provided through Microsoft Defender plans specific to the types of resources in your subscriptions. For example, you can enable Microsoft Defender for Storage to get alerted about suspicious activities related to your Azure Storage accounts.
+
