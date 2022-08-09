@@ -1,0 +1,24 @@
+Cloud Computing Advantages –
+There are several advantages that a cloud environment has over a physical environment –
+•	High availability: Depending on the service-level agreement (SLA) that you choose, your cloud-based apps can provide a continuous user experience with no apparent downtime, even when things go wrong.
+•	Scalability: Apps in the cloud can scale vertically and horizontally:
+	Scale vertically to increase compute capacity by adding RAM or CPUs to a virtual machine.
+	Scaling horizontally increases compute capacity by adding instances of resources, such as adding VMs to the configuration.
+•	Elasticity: You can configure cloud-based apps to take advantage of autoscaling, so your apps always have the resources they need.
+•	Agility: Deploy and configure cloud-based resources quickly as your app requirements change.
+•	Geo-distribution: You can deploy apps and data to regional datacenters around the globe, thereby ensuring that your customers always have the best performance in their region.
+•	Disaster recovery: By taking advantage of cloud-based backup services, data replication, and geo-distribution, you can deploy your apps with the confidence that comes from knowing that your data is safe in the event of disaster.
+•	Reliability = High Availability: Server uptime is really one of the biggest concerns for any data center. If the system goes down, that could cost the company thousands or even millions of dollars. Many on-premises systems appear to have virtually 100% uptime since they are “always” up. However, running 24/7 servers for 8-to-5 workloads are simply wasteful, and yet, these systems periodically experience downtime, upgrade, or maintenance issues. On the contrary, most cloud services within Microsoft Azure come with a 99.95% SLA guarantee which is much higher than most on-premises data centers can hope to offer.
+The architect of the cloud is built on the premise that hardware will fail at some point. Cloud providers like Microsoft or Amazon have automated a number of features that used to cause headache when hosting on-premises servers:
+1.	•3 redundant copies of data at all times, with 1 copy in a separate data center in case of regional disaster like a hurricane or earthquake;
+2.	•Automatic fail over to backup server to minimize downtime;
+3.	•Hosting applications on at least 2 server instances to minimize downtime when hardware failure occurs;
+
+Therefore, unless you want to spend millions of dollars on building and maintaining your own IT infrastructure, it is highly unlikely that you can compete with the stability and reliability of public cloud providers.
+•	Predictability: Cloud computing is typically provided on a monthly pay-as-you-go financing model. 
+1.	the cost of IT operations can now be aligned with the business growth instead of requiring large capital expenses up front in anticipation of new businesses, customers, or applications.
+2.	 CIOs can now know exactly how much IT operational costs are associated with an addition of one customer or a unit of service. 
+3.	The cloud allows for “just in time” delivery of needed services with very little advanced notice of seasonal or temporary spikes in demand.
+4.	 predict trends and challenges before they happen using monitoring tools and predictive analytics which help your internal IT personnel troubleshoot potential bottlenecks and plan for additional capacity if need to. 
+5.	proactively resolve issues with real-time data, alerts, and technical support from the cloud providers.
+
