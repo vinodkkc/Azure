@@ -1,0 +1,17 @@
+vnet
+subnet
+vm
+gateway
+application gateway ---4 layer
+application load balancer---7 layer
+vscale sets
+traffic load balancer----server,client data not loading,struck data calling,
+route table --
+
+vm scability,avaibility region,zone, disk space
+
+active  directory---Iam, directory roles list of roles,
+
+
+----------------------------------------------------
+
